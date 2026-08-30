@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssetsRouteImport } from './routes/assets'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as AssetsIndexRouteImport } from './routes/assets.index'
+import { Route as AssetsAssetIdRouteImport } from './routes/assets.$assetId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,16 +35,23 @@ const AssetsIndexRoute = AssetsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AssetsRoute,
 } as any)
+const AssetsAssetIdRoute = AssetsAssetIdRouteImport.update({
+  id: '/$assetId',
+  path: '/$assetId',
+  getParentRoute: () => AssetsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assets': typeof AssetsRouteWithChildren
   '/portfolio': typeof PortfolioRoute
+  '/assets/$assetId': typeof AssetsAssetIdRoute
   '/assets/': typeof AssetsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/portfolio': typeof PortfolioRoute
+  '/assets/$assetId': typeof AssetsAssetIdRoute
   '/assets': typeof AssetsIndexRoute
 }
 export interface FileRoutesById {
@@ -51,14 +59,21 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assets': typeof AssetsRouteWithChildren
   '/portfolio': typeof PortfolioRoute
+  '/assets/$assetId': typeof AssetsAssetIdRoute
   '/assets/': typeof AssetsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assets' | '/portfolio' | '/assets/'
+  fullPaths: '/' | '/assets' | '/portfolio' | '/assets/$assetId' | '/assets/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/portfolio' | '/assets'
-  id: '__root__' | '/' | '/assets' | '/portfolio' | '/assets/'
+  to: '/' | '/portfolio' | '/assets/$assetId' | '/assets'
+  id:
+    | '__root__'
+    | '/'
+    | '/assets'
+    | '/portfolio'
+    | '/assets/$assetId'
+    | '/assets/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,14 +112,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssetsIndexRouteImport
       parentRoute: typeof AssetsRoute
     }
+    '/assets/$assetId': {
+      id: '/assets/$assetId'
+      path: '/$assetId'
+      fullPath: '/assets/$assetId'
+      preLoaderRoute: typeof AssetsAssetIdRouteImport
+      parentRoute: typeof AssetsRoute
+    }
   }
 }
 
 interface AssetsRouteChildren {
+  AssetsAssetIdRoute: typeof AssetsAssetIdRoute
   AssetsIndexRoute: typeof AssetsIndexRoute
 }
 
 const AssetsRouteChildren: AssetsRouteChildren = {
+  AssetsAssetIdRoute: AssetsAssetIdRoute,
   AssetsIndexRoute: AssetsIndexRoute,
 }
 
