@@ -13,8 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AcquisitionsRouteImport } from './routes/acquisitions'
 import { Route as AssetsRouteImport } from './routes/assets'
 import { Route as CashflowRouteImport } from './routes/cashflow'
+import { Route as DecisionsRouteImport } from './routes/decisions'
+import { Route as DisposalsRouteImport } from './routes/disposals'
 import { Route as PipelineRouteImport } from './routes/pipeline'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as RiskRouteImport } from './routes/risk'
+import { Route as StrategyRouteImport } from './routes/strategy'
 import { Route as ValuationRouteImport } from './routes/valuation'
 import { Route as AssetsIndexRouteImport } from './routes/assets.index'
 import { Route as AssetsAssetIdRouteImport } from './routes/assets.$assetId'
@@ -39,6 +43,16 @@ const CashflowRoute = CashflowRouteImport.update({
   path: '/cashflow',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DecisionsRoute = DecisionsRouteImport.update({
+  id: '/decisions',
+  path: '/decisions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisposalsRoute = DisposalsRouteImport.update({
+  id: '/disposals',
+  path: '/disposals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PipelineRoute = PipelineRouteImport.update({
   id: '/pipeline',
   path: '/pipeline',
@@ -47,6 +61,16 @@ const PipelineRoute = PipelineRouteImport.update({
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RiskRoute = RiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StrategyRoute = StrategyRouteImport.update({
+  id: '/strategy',
+  path: '/strategy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ValuationRoute = ValuationRouteImport.update({
@@ -70,8 +94,12 @@ export interface FileRoutesByFullPath {
   '/acquisitions': typeof AcquisitionsRoute
   '/assets': typeof AssetsRouteWithChildren
   '/cashflow': typeof CashflowRoute
+  '/decisions': typeof DecisionsRoute
+  '/disposals': typeof DisposalsRoute
   '/pipeline': typeof PipelineRoute
   '/portfolio': typeof PortfolioRoute
+  '/risk': typeof RiskRoute
+  '/strategy': typeof StrategyRoute
   '/valuation': typeof ValuationRoute
   '/assets/$assetId': typeof AssetsAssetIdRoute
   '/assets/': typeof AssetsIndexRoute
@@ -80,8 +108,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/acquisitions': typeof AcquisitionsRoute
   '/cashflow': typeof CashflowRoute
+  '/decisions': typeof DecisionsRoute
+  '/disposals': typeof DisposalsRoute
   '/pipeline': typeof PipelineRoute
   '/portfolio': typeof PortfolioRoute
+  '/risk': typeof RiskRoute
+  '/strategy': typeof StrategyRoute
   '/valuation': typeof ValuationRoute
   '/assets/$assetId': typeof AssetsAssetIdRoute
   '/assets': typeof AssetsIndexRoute
@@ -92,8 +124,12 @@ export interface FileRoutesById {
   '/acquisitions': typeof AcquisitionsRoute
   '/assets': typeof AssetsRouteWithChildren
   '/cashflow': typeof CashflowRoute
+  '/decisions': typeof DecisionsRoute
+  '/disposals': typeof DisposalsRoute
   '/pipeline': typeof PipelineRoute
   '/portfolio': typeof PortfolioRoute
+  '/risk': typeof RiskRoute
+  '/strategy': typeof StrategyRoute
   '/valuation': typeof ValuationRoute
   '/assets/$assetId': typeof AssetsAssetIdRoute
   '/assets/': typeof AssetsIndexRoute
@@ -105,8 +141,12 @@ export interface FileRouteTypes {
     | '/acquisitions'
     | '/assets'
     | '/cashflow'
+    | '/decisions'
+    | '/disposals'
     | '/pipeline'
     | '/portfolio'
+    | '/risk'
+    | '/strategy'
     | '/valuation'
     | '/assets/$assetId'
     | '/assets/'
@@ -115,8 +155,12 @@ export interface FileRouteTypes {
     | '/'
     | '/acquisitions'
     | '/cashflow'
+    | '/decisions'
+    | '/disposals'
     | '/pipeline'
     | '/portfolio'
+    | '/risk'
+    | '/strategy'
     | '/valuation'
     | '/assets/$assetId'
     | '/assets'
@@ -126,8 +170,12 @@ export interface FileRouteTypes {
     | '/acquisitions'
     | '/assets'
     | '/cashflow'
+    | '/decisions'
+    | '/disposals'
     | '/pipeline'
     | '/portfolio'
+    | '/risk'
+    | '/strategy'
     | '/valuation'
     | '/assets/$assetId'
     | '/assets/'
@@ -138,8 +186,12 @@ export interface RootRouteChildren {
   AcquisitionsRoute: typeof AcquisitionsRoute
   AssetsRoute: typeof AssetsRouteWithChildren
   CashflowRoute: typeof CashflowRoute
+  DecisionsRoute: typeof DecisionsRoute
+  DisposalsRoute: typeof DisposalsRoute
   PipelineRoute: typeof PipelineRoute
   PortfolioRoute: typeof PortfolioRoute
+  RiskRoute: typeof RiskRoute
+  StrategyRoute: typeof StrategyRoute
   ValuationRoute: typeof ValuationRoute
 }
 
@@ -173,6 +225,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CashflowRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/decisions': {
+      id: '/decisions'
+      path: '/decisions'
+      fullPath: '/decisions'
+      preLoaderRoute: typeof DecisionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disposals': {
+      id: '/disposals'
+      path: '/disposals'
+      fullPath: '/disposals'
+      preLoaderRoute: typeof DisposalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pipeline': {
       id: '/pipeline'
       path: '/pipeline'
@@ -185,6 +251,20 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/risk': {
+      id: '/risk'
+      path: '/risk'
+      fullPath: '/risk'
+      preLoaderRoute: typeof RiskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/strategy': {
+      id: '/strategy'
+      path: '/strategy'
+      fullPath: '/strategy'
+      preLoaderRoute: typeof StrategyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/valuation': {
@@ -229,8 +309,12 @@ const rootRouteChildren: RootRouteChildren = {
   AcquisitionsRoute: AcquisitionsRoute,
   AssetsRoute: AssetsRouteWithChildren,
   CashflowRoute: CashflowRoute,
+  DecisionsRoute: DecisionsRoute,
+  DisposalsRoute: DisposalsRoute,
   PipelineRoute: PipelineRoute,
   PortfolioRoute: PortfolioRoute,
+  RiskRoute: RiskRoute,
+  StrategyRoute: StrategyRoute,
   ValuationRoute: ValuationRoute,
 }
 export const routeTree = rootRouteImport

@@ -596,7 +596,7 @@ function Scenarios({ asset }: { asset: Asset }) {
 }
 
 export function ScenarioEngine({ asset }: { asset: Asset }) {
-  const base = asset.scenarios[0];
+  const base = asset.scenarios[0]!;
   const [vars, setVars] = useState({
     construction: 0,
     salePrice: 0,
