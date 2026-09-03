@@ -14,7 +14,304 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      acquisitions: {
+        Row: {
+          acquisition_cost: number
+          asking_price: number
+          created_at: string
+          estimated_value: number
+          id: string
+          land_area: number
+          location: string
+          market: string
+          name: string
+          planning: string
+          potential_gfa: number
+          projected_development: string
+          projected_return: number
+          recommendation: string
+          risks: string
+          stage: string
+          title: string
+        }
+        Insert: {
+          acquisition_cost?: number
+          asking_price?: number
+          created_at?: string
+          estimated_value?: number
+          id: string
+          land_area?: number
+          location?: string
+          market?: string
+          name: string
+          planning?: string
+          potential_gfa?: number
+          projected_development?: string
+          projected_return?: number
+          recommendation?: string
+          risks?: string
+          stage?: string
+          title?: string
+        }
+        Update: {
+          acquisition_cost?: number
+          asking_price?: number
+          created_at?: string
+          estimated_value?: number
+          id?: string
+          land_area?: number
+          location?: string
+          market?: string
+          name?: string
+          planning?: string
+          potential_gfa?: number
+          projected_development?: string
+          projected_return?: number
+          recommendation?: string
+          risks?: string
+          stage?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      assets: {
+        Row: {
+          acquisition_value: number
+          asset_class: string
+          buildings: number
+          cashflow: Json
+          commercial_area: number
+          coords: Json
+          created_at: string
+          current_use: string
+          current_value: number
+          debt: number
+          decisions: Json
+          development_rights: string
+          development_status: string
+          documents: Json
+          economics: Json
+          geography: string
+          gfa: number
+          id: string
+          invested_capital: number
+          land_area: number
+          lifecycle: string
+          location: string
+          name: string
+          nfa: number
+          occupancy: number
+          opex: number
+          ownership: string
+          parking: number
+          planning_status: string
+          portfolio: string
+          potential_gfa: number
+          previous_value: number
+          projected_irr: number
+          projects: Json
+          recommendation: Json
+          residential_area: number
+          revenue: number
+          risk: string
+          roi: number
+          scenarios: Json
+          strategy: string
+          strategy_options: Json
+          units: number
+          updated_at: string
+        }
+        Insert: {
+          acquisition_value?: number
+          asset_class?: string
+          buildings?: number
+          cashflow?: Json
+          commercial_area?: number
+          coords?: Json
+          created_at?: string
+          current_use?: string
+          current_value?: number
+          debt?: number
+          decisions?: Json
+          development_rights?: string
+          development_status?: string
+          documents?: Json
+          economics?: Json
+          geography?: string
+          gfa?: number
+          id: string
+          invested_capital?: number
+          land_area?: number
+          lifecycle?: string
+          location?: string
+          name: string
+          nfa?: number
+          occupancy?: number
+          opex?: number
+          ownership?: string
+          parking?: number
+          planning_status?: string
+          portfolio?: string
+          potential_gfa?: number
+          previous_value?: number
+          projected_irr?: number
+          projects?: Json
+          recommendation?: Json
+          residential_area?: number
+          revenue?: number
+          risk?: string
+          roi?: number
+          scenarios?: Json
+          strategy?: string
+          strategy_options?: Json
+          units?: number
+          updated_at?: string
+        }
+        Update: {
+          acquisition_value?: number
+          asset_class?: string
+          buildings?: number
+          cashflow?: Json
+          commercial_area?: number
+          coords?: Json
+          created_at?: string
+          current_use?: string
+          current_value?: number
+          debt?: number
+          decisions?: Json
+          development_rights?: string
+          development_status?: string
+          documents?: Json
+          economics?: Json
+          geography?: string
+          gfa?: number
+          id?: string
+          invested_capital?: number
+          land_area?: number
+          lifecycle?: string
+          location?: string
+          name?: string
+          nfa?: number
+          occupancy?: number
+          opex?: number
+          ownership?: string
+          parking?: number
+          planning_status?: string
+          portfolio?: string
+          potential_gfa?: number
+          previous_value?: number
+          projected_irr?: number
+          projects?: Json
+          recommendation?: Json
+          residential_area?: number
+          revenue?: number
+          risk?: string
+          roi?: number
+          scenarios?: Json
+          strategy?: string
+          strategy_options?: Json
+          units?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      disposals: {
+        Row: {
+          asset_id: string | null
+          created_at: string
+          current_value: number
+          debt: number
+          exit_irr: number
+          id: string
+          name: string
+          offer: number
+          stage: string
+          target_price: number
+          transaction_costs: number
+        }
+        Insert: {
+          asset_id?: string | null
+          created_at?: string
+          current_value?: number
+          debt?: number
+          exit_irr?: number
+          id: string
+          name: string
+          offer?: number
+          stage?: string
+          target_price?: number
+          transaction_costs?: number
+        }
+        Update: {
+          asset_id?: string | null
+          created_at?: string
+          current_value?: number
+          debt?: number
+          exit_irr?: number
+          id?: string
+          name?: string
+          offer?: number
+          stage?: string
+          target_price?: number
+          transaction_costs?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "disposals_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      risks: {
+        Row: {
+          asset_id: string | null
+          category: string
+          created_at: string
+          evidence: string
+          id: string
+          impact: number
+          mitigation: string
+          owner: string
+          severity: string
+          status: string
+        }
+        Insert: {
+          asset_id?: string | null
+          category?: string
+          created_at?: string
+          evidence?: string
+          id: string
+          impact?: number
+          mitigation?: string
+          owner?: string
+          severity?: string
+          status?: string
+        }
+        Update: {
+          asset_id?: string | null
+          category?: string
+          created_at?: string
+          evidence?: string
+          id?: string
+          impact?: number
+          mitigation?: string
+          owner?: string
+          severity?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "risks_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
