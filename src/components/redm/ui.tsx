@@ -103,7 +103,7 @@ export function Tag({
     risk: "",
   };
   const cls =
-    tone === "risk" ? riskTone[String(children)] ?? tones.muted : tones[tone];
+    tone === "risk" ? riskTone[String(children)] ?? tones["muted"] : tones[tone];
   return <span className={cn(base, cls, className)}>{children}</span>;
 }
 

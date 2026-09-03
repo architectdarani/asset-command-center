@@ -42,10 +42,11 @@ function feasibility(a: Acquisition) {
 }
 
 function AcquisitionCommand() {
+  const first = ACQUISITIONS[0]!;
   const [stage, setStage] = useState<string | null>(null);
-  const [selected, setSelected] = useState<string>(ACQUISITIONS[0].id);
+  const [selected, setSelected] = useState<string>(first.id);
   const list = ACQUISITIONS.filter((a) => !stage || a.stage === stage);
-  const active = ACQUISITIONS.find((a) => a.id === selected) ?? ACQUISITIONS[0];
+  const active = ACQUISITIONS.find((a) => a.id === selected) ?? first;
   const f = feasibility(active);
 
   const pipelineValue = ACQUISITIONS.reduce((s, a) => s + a.estimatedValue, 0);
