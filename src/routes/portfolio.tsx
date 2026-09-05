@@ -1,14 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import {
-  ASSETS,
-  PORTFOLIO,
-  STRATEGIES,
-  LIFECYCLE_ORDER,
-  kes,
-  pct,
-  noi,
-} from "@/lib/redm-data";
+import { STRATEGIES, LIFECYCLE_ORDER, kes, pct, noi } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Chip, Metric, MetricRow } from "@/components/redm/ui";
 import { PortfolioAssetTable } from "@/components/redm/asset-table";
 
@@ -25,6 +18,7 @@ export const Route = createFileRoute("/portfolio")({
 });
 
 function PortfolioOverview() {
+  const { assets: ASSETS, portfolio: PORTFOLIO } = useRedm();
   const [geo, setGeo] = useState<string | null>(null);
   const [cls, setCls] = useState<string | null>(null);
   const [life, setLife] = useState<string | null>(null);

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ASSETS, kes, pct, type CashFlowRow } from "@/lib/redm-data";
+import { kes, pct, type CashFlowRow } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Metric, MetricRow, TableWrap, Th, Td, Chip, Bar } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/cashflow")({
@@ -60,6 +61,7 @@ function rollUp(rows: CashFlowRow[], size: number, label: (i: number) => string)
 }
 
 function PortfolioCashFlow() {
+  const { assets: ASSETS } = useRedm();
   const [view, setView] = useState<"MONTHLY" | "QUARTERLY" | "ANNUAL">("QUARTERLY");
   const [assetId, setAssetId] = useState<string | null>(null);
 

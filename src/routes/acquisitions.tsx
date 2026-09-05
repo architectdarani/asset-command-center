@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ACQUISITIONS, ACQUISITION_STAGES, kes, pct, num, type Acquisition } from "@/lib/redm-data";
+import { ACQUISITION_STAGES, kes, pct, num, type Acquisition } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Chip, Metric, MetricRow, TableWrap, Th, Td, Tag, KeyValue } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/acquisitions")({
@@ -42,6 +43,7 @@ function feasibility(a: Acquisition) {
 }
 
 function AcquisitionCommand() {
+  const { acquisitions: ACQUISITIONS } = useRedm();
   const first = ACQUISITIONS[0]!;
   const [stage, setStage] = useState<string | null>(null);
   const [selected, setSelected] = useState<string>(first.id);

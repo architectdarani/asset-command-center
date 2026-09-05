@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { DISPOSALS, DISPOSAL_STAGES, getAsset, kes, pct, equity } from "@/lib/redm-data";
+import { DISPOSAL_STAGES, kes, pct, equity } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Metric, MetricRow, TableWrap, Th, Td, Tag, Chip, KeyValue } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/disposals")({
@@ -19,6 +20,7 @@ const proceeds = (d: (typeof DISPOSALS)[number]) =>
   (d.offer || d.targetPrice) - d.transactionCosts - d.debt;
 
 function DisposalCommand() {
+  const { disposals: DISPOSALS, getAsset } = useRedm();
   const first = DISPOSALS[0]!;
   const [stage, setStage] = useState<string | null>(null);
   const [selected, setSelected] = useState(first.id);

@@ -1,20 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import {
-  getAsset,
-  RISKS,
-  DISPOSALS,
-  kes,
-  pct,
-  num,
-  noi,
-  equity,
-  yieldPct,
-  ltv,
-  tdc,
-  gdv,
-  type Asset,
-} from "@/lib/redm-data";
+import { kes, pct, num, noi, equity, yieldPct, ltv, tdc, gdv, type Asset } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import {
   Panel,
   PageHeader,
@@ -71,6 +58,7 @@ export const Route = createFileRoute("/assets/$assetId")({
 });
 
 function AssetProfile() {
+  const { getAsset, risks: RISKS, disposals: DISPOSALS } = useRedm();
   const { assetId } = Route.useParams();
   const asset = getAsset(assetId)!;
   const [tab, setTab] = useState<Tab>("OVERVIEW");
