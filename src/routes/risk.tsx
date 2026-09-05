@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { RISKS, ASSETS, getAsset, kes } from "@/lib/redm-data";
+import { kes } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Metric, MetricRow, TableWrap, Th, Td, Tag, Bar, Chip } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/risk")({
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/risk")({
 });
 
 function RiskCommand() {
+  const { risks: RISKS, assets: ASSETS, getAsset } = useRedm();
   const [category, setCategory] = useState<string | null>(null);
   const [assetId, setAssetId] = useState<string | null>(null);
 

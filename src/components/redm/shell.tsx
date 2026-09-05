@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { type ReactNode } from "react";
-import { PORTFOLIO, kes } from "@/lib/redm-data";
+import { kes } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 
 const NAV: { to: string; label: string; code: string }[] = [
   { to: "/", label: "Investment Command", code: "01" },
@@ -17,6 +18,7 @@ const NAV: { to: string; label: string; code: string }[] = [
 ];
 
 export function Shell({ children }: { children: ReactNode }) {
+  const { portfolio: PORTFOLIO } = useRedm();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (

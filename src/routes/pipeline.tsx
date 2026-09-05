@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ASSETS, LIFECYCLE_ORDER, kes, pct, num, tdc, gdv, type Asset } from "@/lib/redm-data";
+import { LIFECYCLE_ORDER, kes, pct, num, tdc, gdv, type Asset } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Metric, MetricRow, TableWrap, Th, Td, Tag, Bar, Chip } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/pipeline")({
@@ -30,6 +31,7 @@ const STAGE_MODULE: Record<string, string> = {
 };
 
 function DevelopmentPipeline() {
+  const { assets: ASSETS } = useRedm();
   const [stage, setStage] = useState<string | null>(null);
   const list = ASSETS.filter((a) => !stage || a.lifecycle === stage);
 

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ASSETS, kes, pct, noi, equity, ltv, yieldPct } from "@/lib/redm-data";
+import { kes, pct, noi, equity, ltv, yieldPct } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Metric, MetricRow, TableWrap, Th, Td, Tag, KeyValue, Chip } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/strategy")({
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/strategy")({
 });
 
 function StrategyAnalysis() {
+  const { assets: ASSETS } = useRedm();
   const first = ASSETS[0]!;
   const [selected, setSelected] = useState(first.id);
   const a = ASSETS.find((x) => x.id === selected) ?? first;

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ASSETS, kes, pct, noi, equity, ltv } from "@/lib/redm-data";
+import { kes, pct, noi, equity, ltv } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Metric, MetricRow, TableWrap, Th, Td, Tag, Chip, KeyValue } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/decisions")({
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/decisions")({
 });
 
 function DecisionPanel() {
+  const { assets: ASSETS } = useRedm();
   const first = ASSETS[0]!;
   const [selected, setSelected] = useState(first.id);
   const a = ASSETS.find((x) => x.id === selected) ?? first;

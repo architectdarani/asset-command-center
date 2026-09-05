@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ASSETS, PORTFOLIO, kes, pct, equity } from "@/lib/redm-data";
+import { kes, pct, equity } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Metric, MetricRow, TableWrap, Th, Td, Tag, Chip, Bar, Delta } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/valuation")({
@@ -26,6 +27,7 @@ const GROUPS: { key: GroupKey; label: string }[] = [
 ];
 
 function PortfolioValuation() {
+  const { assets: ASSETS, portfolio: PORTFOLIO } = useRedm();
   const [group, setGroup] = useState<GroupKey>("geography");
 
   const gav = PORTFOLIO.gav;

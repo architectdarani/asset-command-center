@@ -1,17 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ASSETS,
-  PORTFOLIO,
-  LIFECYCLE_ORDER,
-  STRATEGIES,
-  RISKS,
-  ACQUISITIONS,
-  kes,
-  pct,
-  noi,
-  equity,
-  yieldPct,
-} from "@/lib/redm-data";
+import { LIFECYCLE_ORDER, STRATEGIES, kes, pct, noi, equity, yieldPct } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, Metric, MetricRow, Tag, Bar, PageHeader, Th, Td, TableWrap, Delta } from "@/components/redm/ui";
 
 export const Route = createFileRoute("/")({
@@ -45,6 +34,7 @@ const QUESTIONS: { q: string; a: string; to: string }[] = [
 ];
 
 function InvestmentCommand() {
+  const { assets: ASSETS, portfolio: PORTFOLIO, risks: RISKS, acquisitions: ACQUISITIONS } = useRedm();
   const gavDelta = ((PORTFOLIO.gav - PORTFOLIO.previousGav) / PORTFOLIO.previousGav) * 100;
   const byStrategy = STRATEGIES.map((s) => ({
     strategy: s,

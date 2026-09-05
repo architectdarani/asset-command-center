@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ASSETS, kes, pct, noi, equity, yieldPct, ltv, num } from "@/lib/redm-data";
+import { kes, pct, noi, equity, yieldPct, ltv, num } from "@/lib/redm-data";
+import { useRedm } from "@/lib/redm-store";
 import { Panel, PageHeader, Tag, Bar, Metric, MetricRow } from "@/components/redm/ui";
 import { PortfolioAssetTable } from "@/components/redm/asset-table";
 
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/assets/")({
 });
 
 function AssetsIndex() {
+  const { assets: ASSETS } = useRedm();
   return (
     <>
       <PageHeader
